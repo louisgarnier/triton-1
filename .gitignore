@@ -1,0 +1,9 @@
+**/__pycache__/**
+**/data/**
+**/config.json
+**/configs.json
+**/config.py
+**/configs.py
+**/__init__.py
+**/*.pyc
+logs/**
