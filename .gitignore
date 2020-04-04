@@ -4,6 +4,8 @@
 **/configs.json
 **/config.py
 **/configs.py
+configs/*.json
+configs/*.yml
 **/__init__.py
 **/*.pyc
 logs/**
