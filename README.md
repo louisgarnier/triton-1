@@ -45,7 +45,7 @@ Refer to the `README.md` doc in configs dir to know how to format configs for th
 
 Now run `python Demo.py -q AAPL`, if you don't get an error you are good to go!
 
-#### Workflow
+### Workflow
 
 This is the required workflow when making changes to code, or adding features to the library.
 
@@ -55,3 +55,5 @@ This is the required workflow when making changes to code, or adding features to
 --> Two upstreams, pointing to https://github.com/Maxime93/triton.git
 If you don't have the upstream: `git add upstream https://github.com/Maxime93/triton.git`
 
+2. Create a new branch `git checkout -b newFeature`
+3. 

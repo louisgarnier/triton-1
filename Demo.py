@@ -22,7 +22,6 @@ def run(args):
     Utils.CreateDirectory(log_directory)
     log_file_name = date.strftime('%d_%m_%Y_%H.log')
     logging.basicConfig(filename=("{}/{}".format(log_directory, log_file_name)), level=logging.INFO)
-    # logger = logging.getLogger(__name__)
     logger.info("####### Started running #######")
 
     logger.info("Getting Quote for {}".format(args.quote))
@@ -39,13 +38,13 @@ def run(args):
     stockQuote = RESTAlpaca.getLastQuote(args.quote)
     print(stockQuote)
 
-    stockHistoricalData = RESTAlpaca.getHistoricdata(args.quote, _from="2020-01-01", to="2020-03-15")
+    stockHistoricalData = RESTAlpaca.getHistoricdata(args.quote, multiplier=1, timespan='day', _from="2020-01-01", to="2020-03-15")
     print(stockHistoricalData)
 
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser('Get quote for a stock.')
-    parser.add_argument('-q', '--quote', help='Name of quote you want prices for', required=True)
+    parser.add_argument('-t', '--ticker', help='Name of ticker you want prices for', required=True)
     args = parser.parse_args()
 
     run(args)
