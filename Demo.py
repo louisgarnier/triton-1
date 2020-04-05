@@ -28,11 +28,19 @@ def run(args):
     logger.info("Getting Quote for {}".format(args.quote))
     factory = ClientFactory()
     RESTAlpaca = factory.get_client('RESTAlpaca')
+    RESTAlpaca.setAccount("Paper")
 
-    AAPL = RESTAlpaca.getHistoricdata(args.quote)
-    print(AAPL)
-    AAPL = RESTAlpaca.getLastQuote(args.quote)
-    print(AAPL)
+    accountInfo = RESTAlpaca.getAccountInfo()
+    print(accountInfo)
+
+    assetInfo = RESTAlpaca.getAssetInfo(args.quote)
+    print(assetInfo)
+
+    stockQuote = RESTAlpaca.getLastQuote(args.quote)
+    print(stockQuote)
+
+    stockHistoricalData = RESTAlpaca.getHistoricdata(args.quote, _from="2020-01-01", to="2020-03-15")
+    print(stockHistoricalData)
 
 if __name__ == "__main__":
     import argparse
