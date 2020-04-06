@@ -6,6 +6,8 @@ import requests
 import alpaca_trade_api as tradeapi
 from clients.AbstractClient import AbstractClient
 
+# Using alpaca_trade_api package: https://github.com/alpacahq/alpaca-trade-api-python
+
 class RESTAlpaca(AbstractClient):
     def __init__(self):
         super(RESTAlpaca, self).__init__()
@@ -33,9 +35,10 @@ class RESTAlpaca(AbstractClient):
         return self.api.get_asset(symbol)
 
     def getLastQuote(self, symbol):
+        self.logger.info("This endpoit uses polygon service, therefore might not work if you only have an Alpaca Paper account.")
         return self.api.polygon.last_quote(symbol)
 
-    def getHistoricdata(self, symbol, multiplier, timespan, _from, to, unadjusted=False, limit=None):
+    def getHistoricQuotesPolygon(self, symbol, multiplier, timespan, _from, to, unadjusted=False, limit=None):
         """
         multiplier: integer affecting the amount of data contained in each Agg object.
         timespan:   string affecting the length of time represented by each Agg object.
@@ -47,4 +50,25 @@ class RESTAlpaca(AbstractClient):
 
         Outputs data is a pandas DF
         """
+        self.logger.info("This endpoit uses polygon service, therefore might not work if you only have an Alpaca Paper account.")
         return self.api.polygon.historic_agg_v2(symbol, 1, 'day', _from=_from, to=to, unadjusted=unadjusted, limit=limit).df
+
+    def getHistoricQuotesAV(self, symbol, adjusted=False, outputsize='full', cadence='daily', output_format=None):
+        """
+        Returns a csv, json, or pandas object of historical OHLCV data.
+        """
+        return self.api.alpha_vantage.historic_quotes(symbol, adjusted=adjusted, outputsize=outputsize, cadence=cadence, output_format=output_format)
+
+    def getLastQuoteAV(self, symbol):
+        """
+        Returns a json object with the current OHLCV data of the selected symbol (same as current_quote).
+        """
+        self.logger.info("getLastQuoteAV({})".format(symbol))
+        return self.api.alpha_vantage.last_quote(symbol)
+
+    def getCurrentQuoteAV(self, symbol):
+        """
+        Returns a json object with the current OHLCV data of the selected symbol (same as current_quote).
+        """
+        self.logger.info("getCurrentQuoteAV({})".format(symbol))
+        return self.api.alpha_vantage.current_quote(symbol)
