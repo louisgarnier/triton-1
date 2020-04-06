@@ -48,6 +48,7 @@ Now run `python Demo.py -t AAPL`, if you don't get an error you are good to go!
 ### Workflow
 
 This is the required workflow when making changes to code, or adding features to the library.
+First thing: `git fetch upstream master` & `git rebase upstream/master` to make sure you have the latest code locally.
 
 1. Make sure you have the correct remote repos set up:
 `git remote -v` should output four lines:
