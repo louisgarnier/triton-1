@@ -9,7 +9,6 @@ import sys
 from ClientFactory import ClientFactory
 import Utils
 
-logger = logging.getLogger(__name__)
 logging_map = {'DEBUG': logging.DEBUG,
                'INFO': logging.INFO,
                'WARNING': logging.WARNING,
@@ -17,29 +16,37 @@ logging_map = {'DEBUG': logging.DEBUG,
 
 def run(args):
     # Logging
-    date = datetime.datetime.now()
-    log_directory = date.strftime('logs/{}'.format(__file__))
+    log_directory = 'logs/{}'.format(__file__)
+    log_file_name = datetime.datetime.now().strftime('%d_%m_%Y_%H.log')
     Utils.CreateDirectory(log_directory)
-    log_file_name = date.strftime('%d_%m_%Y_%H.log')
-    logging.basicConfig(filename=("{}/{}".format(log_directory, log_file_name)), level=logging.INFO)
-    logger.info("####### Started running #######")
 
+    logger = logging.getLogger(__name__)
+    # logging.basicConfig(filename=("{}/{}".format(log_directory, log_file_name)), level=logging_map['DEBUG'])
+    logging.basicConfig(format='%(levelname)s:%(message)s', level=logging_map['DEBUG'])
+
+    logger.info("####### Running {}:{} #######".format(__file__, __name__))
     logger.info("Getting Quote for {}".format(args.ticker))
     factory = ClientFactory()
     RESTAlpaca = factory.get_client('RESTAlpaca')
     RESTAlpaca.setAccount("Paper")
 
-    accountInfo = RESTAlpaca.getAccountInfo()
-    print(accountInfo)
+    # accountInfo = RESTAlpaca.getAccountInfo()
+    # print(accountInfo)
 
-    assetInfo = RESTAlpaca.getAssetInfo(args.ticker)
-    print(assetInfo)
+    # assetInfo = RESTAlpaca.getAssetInfo(args.ticker)
+    # print(assetInfo)
 
-    stockQuote = RESTAlpaca.getLastQuote(args.ticker)
-    print(stockQuote)
+    # stockQuote = RESTAlpaca.getLastQuote(args.ticker)
+    # print(stockQuote)
 
-    stockHistoricalData = RESTAlpaca.getHistoricdata(args.ticker, multiplier=1, timespan='day', _from="2020-01-01", to="2020-03-15")
-    print(stockHistoricalData)
+    # stockHistoricalData = RESTAlpaca.getHistoricQuotesAV(args.ticker, adjusted=True, output_format='pandas')
+    # print(stockHistoricalData)
+
+    # stockCurrentQuoteAV = RESTAlpaca.getCurrentQuoteAV(args.ticker)
+    # print(stockCurrentQuoteAV)
+
+    stockLastQuoteAV = RESTAlpaca.getLastQuoteAV(args.ticker)
+    print(stockLastQuoteAV)
 
 if __name__ == "__main__":
     import argparse
