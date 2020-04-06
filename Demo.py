@@ -24,7 +24,7 @@ def run(args):
     logging.basicConfig(filename=("{}/{}".format(log_directory, log_file_name)), level=logging.INFO)
     logger.info("####### Started running #######")
 
-    logger.info("Getting Quote for {}".format(args.quote))
+    logger.info("Getting Quote for {}".format(args.ticker))
     factory = ClientFactory()
     RESTAlpaca = factory.get_client('RESTAlpaca')
     RESTAlpaca.setAccount("Paper")
@@ -32,13 +32,13 @@ def run(args):
     accountInfo = RESTAlpaca.getAccountInfo()
     print(accountInfo)
 
-    assetInfo = RESTAlpaca.getAssetInfo(args.quote)
+    assetInfo = RESTAlpaca.getAssetInfo(args.ticker)
     print(assetInfo)
 
-    stockQuote = RESTAlpaca.getLastQuote(args.quote)
+    stockQuote = RESTAlpaca.getLastQuote(args.ticker)
     print(stockQuote)
 
-    stockHistoricalData = RESTAlpaca.getHistoricdata(args.quote, multiplier=1, timespan='day', _from="2020-01-01", to="2020-03-15")
+    stockHistoricalData = RESTAlpaca.getHistoricdata(args.ticker, multiplier=1, timespan='day', _from="2020-01-01", to="2020-03-15")
     print(stockHistoricalData)
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ Alpaca:
 ```
 Refer to the `README.md` doc in configs dir to know how to format configs for the different clients!
 
-Now run `python Demo.py -q AAPL`, if you don't get an error you are good to go!
+Now run `python Demo.py -t AAPL`, if you don't get an error you are good to go!
 
 ### Workflow
 
@@ -55,5 +55,8 @@ This is the required workflow when making changes to code, or adding features to
 --> Two upstreams, pointing to https://github.com/Maxime93/triton.git
 If you don't have the upstream: `git add upstream https://github.com/Maxime93/triton.git`
 
-2. Create a new branch `git checkout -b newFeature`
-3. 
+2. Create a new branch `git checkout -b newFeature`.
+3. Code your implementation.
+4. Once done (and tested), push you new branch tou your fork: `git push origin newFeature`
+5. Submit a PR though to the upstream repo (Maxime93/triton) in the github Website.
+6. Once PR is merged do `git fetch upstream master` then `git rebase upstream/master` then `git push origin master`
