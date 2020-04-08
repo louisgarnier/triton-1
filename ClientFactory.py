@@ -1,6 +1,7 @@
 import logging
 import datetime
 from clients.Alpaca import RESTAlpaca
+from clients.Cryptocompare import RESTCryptocompare
 
 class ClientFactory(object):
     def __init__(self):
@@ -8,6 +9,7 @@ class ClientFactory(object):
         self.logger = logging.getLogger(__name__)
         self.logger.info("initiating the clients factory")
         self.clients["RESTAlpaca"] = RESTAlpaca()
+        self.clients["RESTCryptocompare"] = RESTCryptocompare()
 
     def get_client(self, name):
         if name == "" or name is None:

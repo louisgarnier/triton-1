@@ -26,27 +26,31 @@ def run(args):
 
     logger.info("####### Running {}:{} #######".format(__file__, __name__))
     logger.info("Getting Quote for {}".format(args.ticker))
+
     factory = ClientFactory()
     RESTAlpaca = factory.get_client('RESTAlpaca')
     RESTAlpaca.setAccount("Paper")
+    RESTCryptocompare = factory.get_client('RESTCryptocompare')
 
+    # ALPACA CALLS
     # accountInfo = RESTAlpaca.getAccountInfo()
     # print(accountInfo)
-
     # assetInfo = RESTAlpaca.getAssetInfo(args.ticker)
     # print(assetInfo)
-
     # stockQuote = RESTAlpaca.getLastQuote(args.ticker)
     # print(stockQuote)
-
     # stockHistoricalData = RESTAlpaca.getHistoricQuotesAV(args.ticker, adjusted=True, output_format='pandas')
     # print(stockHistoricalData)
-
     # stockCurrentQuoteAV = RESTAlpaca.getCurrentQuoteAV(args.ticker)
     # print(stockCurrentQuoteAV)
+    # stockLastQuoteAV = RESTAlpaca.getLastQuoteAV(args.ticker)
+    # print(stockLastQuoteAV)
 
-    stockLastQuoteAV = RESTAlpaca.getLastQuoteAV(args.ticker)
-    print(stockLastQuoteAV)
+    # CRYPTOCOMPARE CALLS
+    price = RESTCryptocompare.getPrice(args.ticker)
+    print(price)
+    histo = RESTCryptocompare.getBlockchainHisto(args.ticker)
+    print(histo)
 
 if __name__ == "__main__":
     import argparse
