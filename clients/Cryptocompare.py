@@ -3,6 +3,7 @@ import json
 import logging
 import pandas as pd
 import requests
+import sys
 
 import alpaca_trade_api as tradeapi
 from clients.AbstractClient import AbstractClient
@@ -27,6 +28,9 @@ class RESTCryptocompare(AbstractClient):
             Returns a Pandas DataFrame
         """
         url = 'https://min-api.cryptocompare.com/data/blockchain/histo/day?api_key={api_key}&limit={limit}&fsym={symbol}'.format(api_key=self.cfg_file['api_key'], limit=limit, symbol=symbol)
-        data = requests.get(url).json()["Data"]["Data"]
+        try:
+            data = requests.get(url).json()["Data"]["Data"]
+        except KeyError:
+            sys.exit("No Data returned for this ticker")
         df = pd.DataFrame(data)
         return df
