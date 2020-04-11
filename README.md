@@ -24,8 +24,8 @@ Goal is to have all our code and datastores to in one single place for easy data
 - `industries` is dir that holds yaml files of "Company Name": "Stock Ticker" info.
 
 ### Setup
-Fork this repo: `git clone https://github.com/Maxime93/triton.git`, then clone it to your user. This will create a new `triton` repo for your user.
-Clone your `triton` on you local machine.
+Fork this repo: https://github.com/Maxime93/triton.git, then you will have a copy of the codebase in your personal repo `username/triton`.
+Then, from your fork of `triton`, clone on you local machine.
 
 Install pyenv (python version management) to make sure we are all running the same python versions and dependencies: https://github.com/pyenv/pyenv#homebrew-on-macos (install with homebrew). `brew install pyenv`. If you don't have homebrew, install it before: https://brew.sh
 
@@ -63,8 +63,7 @@ Now run `python Demo.py -t AAPL`, if you don't get an error you are good to go!
 
 ### Workflow
 
-This is the required workflow when making changes to code, or adding features to the library.
-First thing: `git fetch upstream master` & `git rebase upstream/master` to make sure you have the latest code locally.
+This is the required workflow when making changes to code, or adding features to the library. This assumes that you have forked the main repo, and cloned your fork to your local machine.
 
 1. Make sure you have the correct remote repos set up:
 `git remote -v` should output four lines:
@@ -72,8 +71,9 @@ First thing: `git fetch upstream master` & `git rebase upstream/master` to make 
 --> Two upstreams, pointing to https://github.com/Maxime93/triton.git
 If you don't have the upstream: `git add upstream https://github.com/Maxime93/triton.git`
 
-2. Create a new branch `git checkout -b newFeature`.
-3. Code your implementation.
-4. Once done (and tested), push you new branch tou your fork: `git push origin newFeature`
-5. Submit a PR though to the upstream repo (Maxime93/triton) in the github Website.
-6. Once PR is merged do `git fetch upstream master` then `git rebase upstream/master` then `git push origin master`
+2. Fetch the latest code from upstream: `git fetch upstream master` & `git rebase upstream/master` to make sure you have the latest code localy.
+3. Create a new branch `git checkout -b newFeature`.
+4. Code your implementation.
+5. Once done (and tested), push you new branch tou your fork: `git push origin newFeature`
+6. Submit a PR though to the upstream repo (Maxime93/triton) in the github Website.
+7. Once PR is merged do `git fetch upstream master` then `git rebase upstream/master` then `git push origin master`
