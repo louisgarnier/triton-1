@@ -1,4 +1,20 @@
 # Triton
+
+### TODO
+
+| Feature | Description |
+| --- | --- |
+| Coinbase Client | Add Coinbase REST Client |
+| Bistamp Client | Add Bitstamp REST Client |
+| Quandl Client | Add Bitstamp REST Client: https://docs.quandl.com/docs/python-installation
+| Email Alert Module | Make a function in Utils.py that takes list of emails and some text as inputs, and send the text to these email addresses as output
+| Asset tracker | New script in the root folder takes as input the a client list (list of clients where you own some assets) gets all these clients, gets you current positions and computes your profits (price bought - current price)
+| Industries | Make list of all relevant companies and their tickers in the appropriate files in the industries folder
+| Industry tracker | New script that gets all tickers in industry dir, gets their prices, and compute aggregate price per industry. Time span should be a param, as well as time aggregation (minute, hour, day, week, month). Goal is to be able to study the variations of an industry over time.
+| Price variation | New script in root dir that outputs top 20 tickers with highest price variation in the past 24h (timespan should be a param)
+| Price volatility| New script in root dir that outputs top 20 tickers with highest price volatility in the past 24h (timespan should be a param - this could be in the same script as above)
+| Tests | Write tests for all scripts and clients
+
 ### Running `python 3.7.4`
 Goal is to have all our code and datastores to in one single place for easy data analysis and tracking price evloution of different asset classes.
 
