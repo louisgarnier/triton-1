@@ -69,11 +69,15 @@ This is the required workflow when making changes to code, or adding features to
 `git remote -v` should output four lines:
 --> Two origins, pointing to your fork
 --> Two upstreams, pointing to https://github.com/Maxime93/triton.git
-If you don't have the upstream: `git add upstream https://github.com/Maxime93/triton.git`
+If you don't have the upstream: `git remote add upstream https://github.com/Maxime93/triton.git`
 
 2. Fetch the latest code from upstream: `git fetch upstream master` & `git rebase upstream/master` to make sure you have the latest code localy.
 3. Create a new branch `git checkout -b newFeature`.
 4. Code your implementation.
-5. Once done (and tested), push you new branch tou your fork: `git push origin newFeature`
-6. Submit a PR though to the upstream repo (Maxime93/triton) in the github Website.
-7. Once PR is merged do `git fetch upstream master` then `git rebase upstream/master` then `git push origin master`
+5. Once done (and tested), push your new branch `newFeature` to your fork like such: `git push origin newFeature`
+6. Submit a PR to the upstream repo (Maxime93/triton) in the github Website.
+7. Once PR is merged, go back to your master branch `git checkout master` then do `git fetch upstream master` then `git rebase upstream/master`. A that point the code you developped on your local `NewFeature` branch has gone to your origin repo, pulled by the upstream repo, and pulled back to your local `master` branch.
+
+Last step you can `git push origin master`, so the master branch from your repo has the latest code as well, and `git checkout -b NewFeature` delete that local branch that is now merged with you local master branch.
+
+Congrats you now know how to use git.
