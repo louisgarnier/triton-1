@@ -44,12 +44,12 @@ def run(args):
     # print(stockHistoricalData)
     # stockCurrentQuoteAV = RESTAlpaca.getCurrentQuoteAV(args.ticker)
     # print(stockCurrentQuoteAV)
-    # stockLastQuoteAV = RESTAlpaca.getLastQuoteAV(args.ticker)
-    # print(stockLastQuoteAV)
+    stockLastQuoteAV = RESTAlpaca.getLastQuoteAV(args.ticker)
+    print(stockLastQuoteAV)
 
     # CRYPTOCOMPARE CALLS
-    # price = RESTCryptocompare.getPrice(args.ticker)
-    # print(price)
+    price = RESTCryptocompare.getPrice('BTC')
+    print(price)
     # histo = RESTCryptocompare.getBlockchainHisto(args.ticker)
     # print(histo)
 

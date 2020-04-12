@@ -38,10 +38,9 @@ class RESTCoinbase(AbstractClient):
         if body:
             message = "{timestamp}{method}{request_path}{body}"
         message = message.format(timestamp=timestamp,
-                                                                     method=method.upper(),
-                                                                     request_path=request_path,
-                                                                     body=body
-                                                                     )
+                                 method=method.upper(),
+                                 request_path=request_path,
+                                 body=body)
         message = message.encode('ascii')
         signature = hmac.new(hmac_key, message, hashlib.sha256)
         signature_b64 = base64.b64encode(signature.digest()).decode('utf-8')
@@ -53,33 +52,19 @@ class RESTCoinbase(AbstractClient):
             'CB-ACCESS-PASSPHRASE': self.cfg_file['passphrase']
         }
 
-    def send_message(self, method, endpoint, params=None, data=None):
-        """Send API request.
-        Args:
-            method (str): HTTP method (get, post, delete, etc.)
-            endpoint (str): Endpoint (to be added to base URL)
-            params (Optional[dict]): HTTP request parameters
-            data (Optional[str]): JSON-encoded string payload for POST
-        Returns:
-            dict/list: JSON response
-        """
-        headers=self.getHeaders(method, endpoint)
-        url = "{}{}".format(self.cfg_file['api_url'], endpoint)
-        print(url)
-        r = self.session.request(method, url, params=params, data=data,
-                                 headers=headers, timeout=30)
-        return r.json()
-
     def listAccounts(self):
-        data = self.send_message('get', '/accounts')
+        url = "{}{}".format(self.cfg_file['api_url'], '/accounts')
+        data = self._get(url, self.getHeaders('get', '/accounts'))
         return data
 
     def listOrders(self):
-        data = self.send_message('get', '/orders')
+        url = "{}{}".format(self.cfg_file['api_url'], '/orders')
+        data = self._get(url, self.getHeaders('get', '/orders'))
         return data
 
     def getProducts(self):
-        data = self.send_message('get', '/products')
+        url = "{}{}".format(self.cfg_file['api_url'], '/products')
+        data = self._get(url, self.getHeaders('get', '/products'))
         return data
 
     def getBook(self, product_id):
@@ -94,7 +79,8 @@ class RESTCoinbase(AbstractClient):
                 ]
             }
         """
-        data = self.send_message('get', '/products/{}/book'.format(product_id))
+        url = "{}{}".format(self.cfg_file['api_url'], '/products/{}/book'.format(product_id))
+        data = self._get(url, self.getHeaders('get', '/products/{}/book'.format(product_id)))
         return data
 
     def getTicker(self, product_id):
