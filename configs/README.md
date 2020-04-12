@@ -22,3 +22,12 @@ Alpaca:
 Cryptocompare:
   api_key: <your-api-key>
 ```
+
+### Cryptocompare
+```
+Coinbase:
+  api_url: https://api.pro.coinbase.com
+  api_key: <your-api-key>
+  secret_key: <your-secret-key>
+  passphrase: <your-passphrase>
+```
