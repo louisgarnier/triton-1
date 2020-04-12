@@ -31,6 +31,7 @@ def run(args):
     RESTAlpaca = factory.get_client('RESTAlpaca')
     RESTAlpaca.setAccount("Paper")
     RESTCryptocompare = factory.get_client('RESTCryptocompare')
+    RESTCoinbase = factory.get_client('RESTCoinbase')
 
     # ALPACA CALLS
     # accountInfo = RESTAlpaca.getAccountInfo()
@@ -47,10 +48,22 @@ def run(args):
     # print(stockLastQuoteAV)
 
     # CRYPTOCOMPARE CALLS
-    price = RESTCryptocompare.getPrice(args.ticker)
-    print(price)
-    histo = RESTCryptocompare.getBlockchainHisto(args.ticker)
-    print(histo)
+    # price = RESTCryptocompare.getPrice(args.ticker)
+    # print(price)
+    # histo = RESTCryptocompare.getBlockchainHisto(args.ticker)
+    # print(histo)
+
+    # COINBASE CALLS
+    # accounts = RESTCoinbase.listAccounts()
+    # print(accounts)
+    # orders = RESTCoinbase.listOrders()
+    # print(orders)
+    # products = RESTCoinbase.getProducts()
+    # print(products)
+    # book = RESTCoinbase.getBook('ETH-USD')
+    # print(book)
+    ticker = RESTCoinbase.getBook('ETH-USD')
+    print(ticker)
 
 if __name__ == "__main__":
     import argparse
