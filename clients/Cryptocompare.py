@@ -18,9 +18,9 @@ class RESTCryptocompare(AbstractClient):
         self.load_config("Cryptocompare")
 
     def getPrice(self, ticker):
-        endpoint = "https://min-api.cryptocompare.com/data/price?fsym={ticker}&tsyms=EUR,USD,GBP,EUR".format(ticker=ticker)
-        r = requests.get(endpoint)
-        return r.json()
+        url = "https://min-api.cryptocompare.com/data/price?fsym={ticker}&tsyms=EUR,USD,GBP,EUR".format(ticker=ticker)
+        response = self._get(url)
+        return response
 
 
     def getBlockchainHisto(self, symbol, limit=2000):
@@ -28,8 +28,9 @@ class RESTCryptocompare(AbstractClient):
             Returns a Pandas DataFrame
         """
         url = 'https://min-api.cryptocompare.com/data/blockchain/histo/day?api_key={api_key}&limit={limit}&fsym={symbol}'.format(api_key=self.cfg_file['api_key'], limit=limit, symbol=symbol)
+        response = self._get(url)
         try:
-            data = requests.get(url).json()["Data"]["Data"]
+            data = response["Data"]["Data"]
         except KeyError:
             sys.exit("No Data returned for this ticker")
         df = pd.DataFrame(data)
